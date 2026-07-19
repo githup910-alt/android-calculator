@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آلة حاسبة أندرويد</title>
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #121212; font-family: sans-serif; margin: 0; }
+        .calc { background: #222; padding: 20px; border-radius: 20px; width: 90%; max-width: 340px; box-shadow: 0px 10px 25px rgba(0,0,0,0.5); }
+        #screen { width: 100%; height: 70px; background: #333; color: white; border: none; font-size: 2.5rem; text-align: right; padding: 15px; box-sizing: border-box; margin-bottom: 20px; border-radius: 10px; }
+        .buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        button { padding: 20px; font-size: 1.6rem; border: none; border-radius: 50%; background: #444; color: white; cursor: pointer; transition: 0.1s; }
+        button:active { background: #555; }
+        button.op { background: #ff9500; color: white; border-radius: 10px; }
+        button.op:active { background: #e08400; }
+        button.eq { background: #4caf50; border-radius: 10px; grid-column: span 2; }
+        button.eq:active { background: #439a46; }
+        button.clear { background: #f44336; border-radius: 10px; }
+        button.clear:active { background: #d32f2f; }
+    </style>
+</head>
+<body>
+
+<div class="calc">
+    <input type="text" id="screen" readonly placeholder="0">
+    <div class="buttons">
+        <button class="clear" onclick="clearScreen()">C</button>
+        <button class="op" onclick="press('/')">/</button>
+        <button class="op" onclick="press('*')">×</button>
+        <button class="op" onclick="press('-')">-</button>
+        <button onclick="press('7')">7</button><button onclick="press('8')">8</button><button onclick="press('9')">9</button>
+        <button class="op" onclick="press('+')">+</button>
+        <button onclick="press('4')">4</button><button onclick="press('5')">5</button><button onclick="press('6')">6</button>
+        <button onclick="press('1')">1</button><button onclick="press('2')">2</button><button onclick="press('3')">3</button>
+        <button onclick="press('0')">0</button><button onclick="press('.')">.</button>
+        <button class="eq" onclick="calculate()">=</button>
+    </div>
+</div>
+
+<script>
+    let screen = document.getElementById('screen');
+    function press(val) { screen.value += val; }
+    function clearScreen() { screen.value = ''; }
+    function calculate() { try { screen.value = eval(screen.value); } catch { screen.value = 'Error'; } }
+</script>
+</body>
+</html>
